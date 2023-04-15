@@ -51,7 +51,7 @@ runService.Heartbeat:Connect(function()
 					if Part:IsA("BasePart") then
 						if Resolver.Type == "With Pred" then
 							Part.Velocity =
-								Target.Character.Humanoid.MoveDirection * Resolver.Prediction
+								CFrame.new(TargetPlr.Character[TargetAimbot.RealHitPart].Position + (TargetPlr.Character.Humanoid.MoveDirection * TargetAimbot.Prediction * (TargetPlr.Character.Humanoid.WalkSpeed))
 							Part.AssemblyLinearVelocity =
 								Target.Character.Humanoid.MoveDirection * Resolver.Prediction
 						else
