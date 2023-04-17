@@ -10,18 +10,19 @@ local player = players.LocalPlayer
 
 -- Funcs
 
-local SendNotif = function(text)
+local sendNotif = function(text)
 	starterGui:SetCore("SendNotification", {
 		Title = "Uni-Resolver | <@:)",
 		Text = text,
-		Duration = 2
+		Duration = 2.5
 	})
 end
 
 -- Code
 
 if not Resolver then
-	SendNotif("Please use loadstring!")
+	sendNotif("Please use loadstring!")
+	
 	return
 end
 
@@ -31,13 +32,13 @@ inputBegan:Connect(function(key)
 			Resolver.Enabled = false
 
 			if Resolver.Notify then
-				SendNotif("Disabled")
+				sendNotif("Disabled")
 			end
 		else
 			Resolver.Enabled = true
-			
+
 			if Resolver.Notify then
-				SendNotif("Enabled")
+				sendNotif("Enabled")
 			end
 		end
 	end
@@ -51,7 +52,7 @@ runService.Heartbeat:Connect(function()
 					if Part:IsA("BasePart") then
 						if Resolver.Type == "With Pred" then
 							Part.Velocity =
-								CFrame.new(TargetPlr.Character[TargetAimbot.RealHitPart].Position + (TargetPlr.Character.Humanoid.MoveDirection * TargetAimbot.Prediction * (TargetPlr.Character.Humanoid.WalkSpeed))
+								Target.Character.Humanoid.MoveDirection * Resolver.Prediction
 							Part.AssemblyLinearVelocity =
 								Target.Character.Humanoid.MoveDirection * Resolver.Prediction
 						else
