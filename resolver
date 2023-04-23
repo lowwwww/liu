@@ -12,7 +12,7 @@ local player = players.LocalPlayer
 
 local sendNotif = function(text)
 	starterGui:SetCore("SendNotification", {
-		Title = "Uni-Resolver | <@:)",
+		Title = "Uni-Resolver | Actyrn#7104",
 		Text = text,
 		Duration = 2.5
 	})
@@ -45,22 +45,20 @@ inputBegan:Connect(function(key)
 end)
 
 runService.Heartbeat:Connect(function()
-	if Resolver.Enabled then
-		for i, Target in pairs(players:GetPlayers()) do
-			if Target ~= player then
-				for i, Part in pairs(Target.Character:GetDescendants()) do
-					if Part:IsA("BasePart") then
-						if Resolver.Type == "With Pred" then
-							Part.Velocity =
-								Target.Character.Humanoid.MoveDirection * Resolver.Prediction
-							Part.AssemblyLinearVelocity =
-								Target.Character.Humanoid.MoveDirection * Resolver.Prediction
-						else
-							Part.Velocity =
-								Part.Velocity * 0
-							Part.AssemblyLinearVelocity =
-								Part.AssemblyLinearVelocity * 0
-						end
+	for i, Target in pairs(players:GetPlayers()) do
+		if Target ~= player then
+			for i, Part in pairs(Target.Character:GetChildren()) do
+				if Resolver.Enabled and Part:IsA("BasePart") then
+					if Resolver.Type == "With Pred" then
+						Part.Velocity =
+							Target.Character.Humanoid.MoveDirection * Resolver.Prediction
+						Part.AssemblyLinearVelocity =
+							Target.Character.Humanoid.MoveDirection * Resolver.Prediction
+					else
+						Part.Velocity =
+							Part.Velocity * 0
+						Part.AssemblyLinearVelocity =
+							Part.AssemblyLinearVelocity * 0
 					end
 				end
 			end
